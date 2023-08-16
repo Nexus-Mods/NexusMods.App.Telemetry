@@ -1,8 +1,8 @@
-site_name: Nexus Mods App Template
-site_url: https://nexus-mods.github.io/NexusMods.App.Template
+site_name: Nexus Mods App Telemetry
+site_url: https://nexus-mods.github.io/NexusMods.App.Telemetry
 
-repo_name: Nexus-Mods/NexusMods.App.Template
-repo_url: https://github.com/Nexus-Mods/NexusMods.App.Template
+repo_name: Nexus-Mods/NexusMods.App.Telemetry
+repo_url: https://github.com/Nexus-Mods/NexusMods.App.Telemetry
 
 extra:
   social:

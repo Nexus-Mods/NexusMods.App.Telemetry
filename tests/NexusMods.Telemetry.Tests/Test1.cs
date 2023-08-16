@@ -1,4 +1,4 @@
-namespace NexusMods.Template.Tests;
+namespace NexusMods.Telemetry.Tests;
 
 public class Test1
 {
