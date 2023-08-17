@@ -20,6 +20,11 @@ public static class Constants
     public const string NameUsersPerOS = "app_users_per_os";
 
     /// <summary>
+    /// The name of the <see cref="Counters.CreateLanguageCounter{TState}"/> counter.
+    /// </summary>
+    public const string NameUsersPerLanguage = "app_users_per_language";
+
+    /// <summary>
     /// Tag that describes the current operating system.
     /// </summary>
     /// <remarks>
@@ -27,4 +32,9 @@ public static class Constants
     /// </remarks>
     /// <seealso cref="Counters.CreateOperatingSystemCounter"/>
     public const string TagOS = "os";
+
+    /// <summary>
+    /// Tag that describes the current selected language.
+    /// </summary>
+    public const string TagLanguage = "language";
 }

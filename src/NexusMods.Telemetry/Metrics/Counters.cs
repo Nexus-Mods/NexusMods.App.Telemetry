@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
+using System.Globalization;
 using System.Runtime.InteropServices;
+using System.Threading;
 using JetBrains.Annotations;
 
 namespace NexusMods.Telemetry.Metrics;
@@ -11,6 +14,8 @@ namespace NexusMods.Telemetry.Metrics;
 [PublicAPI]
 public static class Counters
 {
+    #region Active Users
+
     /// <summary>
     /// Creates an observable up-down counter for the number of active users.
     /// </summary>
@@ -27,6 +32,10 @@ public static class Counters
     }
 
     private static int ObserveActiveUsers() => 1;
+
+    #endregion
+
+    #region Operating System
 
     /// <summary>
     /// Creates an observable up-down counter for the number of users per operating system.
@@ -62,4 +71,44 @@ public static class Counters
     );
 
     private static Measurement<int> ObserveOperatingSystem() => OperatingSystemMeasurement;
+
+    #endregion
+
+    #region Language
+
+    /// <summary>
+    /// Gets the current selected language by the user.
+    /// </summary>
+    public delegate CultureInfo GetCurrentLanguage<in TState>(TState state);
+
+    /// <summary>
+    /// Implementation of <see cref="GetCurrentLanguage{TState}"/> that uses <see cref="Thread.CurrentUICulture"/>.
+    /// </summary>
+    public static readonly GetCurrentLanguage<NoState> GetCurrentUILanguage = _ => Thread.CurrentThread.CurrentUICulture;
+
+    /// <summary>
+    /// Creates an observable up-down counter for the number of users per language.
+    /// </summary>
+    public static ObservableUpDownCounter<int> CreateLanguageCounter<TState>(
+        this Meter meter,
+        GetCurrentLanguage<TState> getCurrentLanguage,
+        TState state)
+    {
+        return meter.CreateObservableUpDownCounter(
+            name: Constants.NameUsersPerLanguage,
+            observeValue: () => ObserveLanguage(getCurrentLanguage, state)
+        );
+    }
+
+    private static Measurement<int> ObserveLanguage<TState>(GetCurrentLanguage<TState> getCurrentLanguage, TState state)
+    {
+        var currentLanguage = getCurrentLanguage(state);
+
+        return new Measurement<int>(
+            value: 1,
+            tags: new KeyValuePair<string, object?>(Constants.TagLanguage, currentLanguage.Name)
+        );
+    }
+
+    #endregion
 }
