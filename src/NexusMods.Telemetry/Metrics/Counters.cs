@@ -90,16 +90,18 @@ public static class Counters
     /// </summary>
     public static ObservableUpDownCounter<int> CreateLanguageCounter<TState>(
         this Meter meter,
-        GetCurrentLanguage<TState> getCurrentLanguage,
-        TState state)
+        TState state,
+        GetCurrentLanguage<TState> getCurrentLanguage)
     {
         return meter.CreateObservableUpDownCounter(
             name: Constants.NameUsersPerLanguage,
-            observeValue: () => ObserveLanguage(getCurrentLanguage, state)
+            observeValue: () => ObserveLanguage(state, getCurrentLanguage)
         );
     }
 
-    private static Measurement<int> ObserveLanguage<TState>(GetCurrentLanguage<TState> getCurrentLanguage, TState state)
+    private static Measurement<int> ObserveLanguage<TState>(
+        TState state,
+        GetCurrentLanguage<TState> getCurrentLanguage)
     {
         var currentLanguage = getCurrentLanguage(state);
 
@@ -123,16 +125,18 @@ public static class Counters
     /// </summary>
     public static ObservableUpDownCounter<int> CreateMembershipCounter<TState>(
         this Meter meter,
-        GetCurrentMembership<TState> getCurrentMembership,
-        TState state)
+        TState state,
+        GetCurrentMembership<TState> getCurrentMembership)
     {
         return meter.CreateObservableUpDownCounter(
             name: Constants.NameUsersPerMembership,
-            observeValue: () => ObserveMembership(getCurrentMembership, state)
+            observeValue: () => ObserveMembership(state, getCurrentMembership)
         );
     }
 
-    private static Measurement<int> ObserveMembership<TState>(GetCurrentMembership<TState> getCurrentMembership, TState state)
+    private static Measurement<int> ObserveMembership<TState>(
+        TState state,
+        GetCurrentMembership<TState> getCurrentMembership)
     {
         var membershipStatus = getCurrentMembership(state);
 

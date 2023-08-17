@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusMods.Telemetry.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusMods.Telemetry.OpenTelemetry", "src\NexusMods.Telemetry.OpenTelemetry\NexusMods.Telemetry.OpenTelemetry.csproj", "{9F686FA9-E71D-4132-B2C9-1C15F24191CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexusMods.Telemetry.Example", "src\NexusMods.Telemetry.Example\NexusMods.Telemetry.Example.csproj", "{B2E65030-98D6-48CD-870D-CEA71C3D316A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,7 @@ Global
 		{D135F8DF-7941-4A9A-9A66-4D371A414CBF} = {0377EBE6-F147-4233-86AD-32C821B9567E}
 		{084C75E9-B655-4FDA-B1B6-E714F2063339} = {6ED01F9D-5E12-4EB2-9601-64A2ADC719DE}
 		{9F686FA9-E71D-4132-B2C9-1C15F24191CD} = {0377EBE6-F147-4233-86AD-32C821B9567E}
+		{B2E65030-98D6-48CD-870D-CEA71C3D316A} = {0377EBE6-F147-4233-86AD-32C821B9567E}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D135F8DF-7941-4A9A-9A66-4D371A414CBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -53,5 +56,9 @@ Global
 		{9F686FA9-E71D-4132-B2C9-1C15F24191CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F686FA9-E71D-4132-B2C9-1C15F24191CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F686FA9-E71D-4132-B2C9-1C15F24191CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2E65030-98D6-48CD-870D-CEA71C3D316A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E65030-98D6-48CD-870D-CEA71C3D316A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2E65030-98D6-48CD-870D-CEA71C3D316A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2E65030-98D6-48CD-870D-CEA71C3D316A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
