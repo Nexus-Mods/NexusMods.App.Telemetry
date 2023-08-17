@@ -25,6 +25,11 @@ public static class Constants
     public const string NameUsersPerLanguage = "app_users_per_language";
 
     /// <summary>
+    /// The name of the <see cref="Counters.CreateMembershipCounter{TState}"/> counter.
+    /// </summary>
+    public const string NameUsersPerMembership = "app_users_per_membership";
+
+    /// <summary>
     /// Tag that describes the current operating system.
     /// </summary>
     /// <remarks>
@@ -37,4 +42,9 @@ public static class Constants
     /// Tag that describes the current selected language.
     /// </summary>
     public const string TagLanguage = "language";
+
+    /// <summary>
+    /// Tag that describes the current membership status of the user.
+    /// </summary>
+    public const string TagMembership = "membership";
 }

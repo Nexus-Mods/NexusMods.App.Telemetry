@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Globalization;
@@ -107,6 +106,39 @@ public static class Counters
         return new Measurement<int>(
             value: 1,
             tags: new KeyValuePair<string, object?>(Constants.TagLanguage, currentLanguage.Name)
+        );
+    }
+
+    #endregion
+
+    #region Membership
+
+    /// <summary>
+    /// Gets the current membership status of the user.
+    /// </summary>
+    public delegate string GetCurrentMembership<in TState>(TState state);
+
+    /// <summary>
+    /// Creates an observable up-down counter for the number of users per membership.
+    /// </summary>
+    public static ObservableUpDownCounter<int> CreateMembershipCounter<TState>(
+        this Meter meter,
+        GetCurrentMembership<TState> getCurrentMembership,
+        TState state)
+    {
+        return meter.CreateObservableUpDownCounter(
+            name: Constants.NameUsersPerMembership,
+            observeValue: () => ObserveMembership(getCurrentMembership, state)
+        );
+    }
+
+    private static Measurement<int> ObserveMembership<TState>(GetCurrentMembership<TState> getCurrentMembership, TState state)
+    {
+        var membershipStatus = getCurrentMembership(state);
+
+        return new Measurement<int>(
+            value: 1,
+            tags: new KeyValuePair<string, object?>(Constants.TagMembership, membershipStatus)
         );
     }
 
